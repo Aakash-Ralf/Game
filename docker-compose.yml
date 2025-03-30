@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  game:
+    build: .
+    command: python game.py
+    depends_on:
+      - server
+    environment:
+      - SERVER_URL=http://server:5000/update_score
+
+  server:
+    build: .
+    command: python server.py
+    ports:
+      - "5000:5000"
+
